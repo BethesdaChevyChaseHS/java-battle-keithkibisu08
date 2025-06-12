@@ -22,6 +22,36 @@ public class MyRobot extends Robot{
          to shoot, use shootAtLocation(x, y) where x and y are the coordinates of the target
          only shoot when canAttack() is true!
         */
-       // System.out.println("Thinking...");
+       // System.out.println("Thinking..."); 
+       int moveStep = 0;
+
+public void performAction() {
+    // Movement pattern: left -> right -> up -> down (one step per tick)
+    switch (moveStep % 4) {
+        case 0:
+            curXMovement = -1; // move left
+            curYMovement = 0;
+            break;
+        case 1:
+            curXMovement = 1;  // move right
+            curYMovement = 0;
+            break;
+        case 2:
+            curXMovement = 0;
+            curYMovement = -1; // move up
+            break;
+        case 3:
+            curXMovement = 0;
+            curYMovement = 1;  // move down
+            break;
+    }
+    
+    moveStep++; // Update for next turn
+
+    // Shooting logic
+    if (canAttack()) {
+        shootAtLocation(5, 5); 
+        
+       }
     }
 }
